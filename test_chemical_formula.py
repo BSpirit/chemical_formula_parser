@@ -11,7 +11,7 @@ class TokenizerTest(unittest.TestCase):
         # given
         tokens = ['(', '{', '[', '1', '999', 'H', 'He', ')', '}', ']', '']
 
-        # when
+        # Then
         for token in tokens:
             self.assertEqual(chemical_formula.tokenize(token).value, token)
 
