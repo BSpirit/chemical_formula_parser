@@ -239,7 +239,7 @@ class Parser:
         """Parses the atom.
 
         Returns:
-            Counter: A dict whose keys are the atoms found in the group, and the values are
+            Counter: A dict whose keys are the atoms found in the atom, and the values are
             the occurences number of these atoms.
         """
         token = self._lexer.get_next_token()
