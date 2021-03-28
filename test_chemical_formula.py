@@ -9,11 +9,23 @@ class TokenizerTest(unittest.TestCase):
     def test_valid_tokens(self):
         """Checks valid token strings produces valid Token instances"""
         # given
-        tokens = ['(', '{', '[', '1', '999', 'H', 'He', ')', '}', ']', '']
+        tokens = [
+            ('(', chemical_formula.Token('(', chemical_formula.TokenType.OPENING_BRACKET)),
+            ('{', chemical_formula.Token('{', chemical_formula.TokenType.OPENING_BRACKET)),
+            ('[', chemical_formula.Token('[', chemical_formula.TokenType.OPENING_BRACKET)),
+            ('1', chemical_formula.Token('1', chemical_formula.TokenType.FACTOR)),
+            ('999', chemical_formula.Token('999', chemical_formula.TokenType.FACTOR)),
+            ('H', chemical_formula.Token('H', chemical_formula.TokenType.ATOM)),
+            ('He', chemical_formula.Token('He', chemical_formula.TokenType.ATOM)),
+            (')', chemical_formula.Token(')', chemical_formula.TokenType.CLOSING_BRACKET)),
+            ('}', chemical_formula.Token('}', chemical_formula.TokenType.CLOSING_BRACKET)),
+            (']', chemical_formula.Token(']', chemical_formula.TokenType.CLOSING_BRACKET)),
+            ('', chemical_formula.Token('', chemical_formula.TokenType.EOF))
+        ]
 
         # Then
         for token in tokens:
-            self.assertEqual(chemical_formula.tokenize(token).value, token)
+            self.assertEqual(chemical_formula.tokenize(token[0]), token[1])
 
     def test_invalid_token(self):
         """Checks chemical_formula.TokenizerException is raised when invalid token is
